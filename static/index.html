@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fraud Detection Service</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-shield-alt"></i> Fraud Detection Service</h1>
+            <p>AI-powered transaction fraud detection using OpenAI and rule-based analysis</p>
+        </header>
+
+        <div class="main-content">
+            <div class="input-section">
+                <h2>Transaction Analysis</h2>
+                <div class="input-group">
+                    <label for="transaction">Transaction Description:</label>
+                    <textarea 
+                        id="transaction" 
+                        placeholder="Enter transaction details (e.g., 'User u99 spent $129.99 at midnight')"
+                        rows="4"
+                    ></textarea>
+                </div>
+                
+                <div class="button-group">
+                    <button id="analyzeOpenAI" class="btn btn-primary">
+                        <i class="fas fa-robot"></i> Analyze with OpenAI
+                    </button>
+                    <button id="analyzeHF" class="btn btn-secondary">
+                        <i class="fas fa-brain"></i> Analyze with Rule-Based
+                    </button>
+                </div>
+                
+                <div class="status-section">
+                    <div id="statusIndicator" class="status-indicator ready">
+                        <i class="fas fa-circle"></i>
+                        <span id="statusText">Ready</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="examples-section">
+                <h3>Example Transactions</h3>
+                <div class="examples">
+                    <button class="example-btn" data-text="User u99 spent $129.99 at the local store">
+                        <i class="fas fa-shopping-bag"></i> Normal Purchase
+                    </button>
+                    <button class="example-btn" data-text="User u99 made urgent wire transfer of $5000 at 3am overseas">
+                        <i class="fas fa-exclamation-triangle"></i> Suspicious Transaction
+                    </button>
+                    <button class="example-btn" data-text="User u99 purchased bitcoin worth $2000 using emergency funds">
+                        <i class="fas fa-bitcoin"></i> High-Risk Transaction
+                    </button>
+                    <button class="example-btn" data-text="User u99 bought groceries for $45.67">
+                        <i class="fas fa-receipt"></i> Regular Transaction
+                    </button>
+                </div>
+            </div>
+
+            <div class="results-section">
+                <h2>Analysis Results</h2>
+                <div id="results" class="results-container">
+                    <div class="placeholder">
+                        <i class="fas fa-search"></i>
+                        <p>Enter a transaction and click analyze to see results</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-content">
+                <p>&copy; 2024 Ravi N. All rights reserved.</p>
+                <p>Built with ❤️ using FastAPI, OpenAI, and modern web technologies</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
