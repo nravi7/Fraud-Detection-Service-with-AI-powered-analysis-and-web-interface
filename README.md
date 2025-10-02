@@ -1,6 +1,142 @@
 # 🛡️ Fraud Detection Service
 
+[![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://python.org)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.114.2-green.svg)](https://fastapi.tiangolo.com)
+[![OpenAI](https://img.shields.io/badge/OpenAI-GPT--4-orange.svg)](https://openai.com)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-brightgreen.svg)](https://nravi7.github.io/Fraud-Detection-Service-with-AI-powered-analysis-and-web-interface/)
+
 A simple AI-powered fraud detection service that analyzes transactions for suspicious activity using OpenAI and rule-based detection.
+
+## 🏗️ Architecture Overview
+
+```mermaid
+graph TB
+    subgraph "Frontend Layer"
+        A["🌐 Web Interface<br/>HTML/CSS/JavaScript"] --> B["📝 User Input<br/>Transaction Text"]
+    end
+    
+    subgraph "API Gateway"
+        C["⚡ FastAPI Server<br/>Port 8000"] --> D["🔒 CORS Middleware"]
+    end
+    
+    subgraph "Core Services"
+        F["🤖 OpenAI Provider<br/>GPT-4 Analysis"] --> G["🧠 AI Fraud Detection"]
+        H["📊 Rule-Based Provider<br/>Pattern Matching"] --> I["🔍 Heuristic Analysis"]
+    end
+    
+    subgraph "Data Processing"
+        J["⚙️ Transaction Parser"] --> K["📈 Risk Scoring<br/>0.0 - 1.0"]
+        K --> L["🏷️ Fraud Classification<br/>FRAUD/LEGIT"]
+    end
+    
+    subgraph "Response Layer"
+        M["📋 Result Formatter"] --> N["📄 JSON Response"]
+        N --> O["📊 Status Indicators<br/>Ready/Processing/Completed"]
+    end
+    
+    B --> C
+    C --> F
+    C --> H
+    G --> J
+    I --> J
+    L --> M
+    O --> A
+    
+    style A fill:#e1f5fe
+    style C fill:#f3e5f5
+    style F fill:#fff3e0
+    style H fill:#e8f5e8
+```
+
+## 🚀 Deployment Architecture
+
+```mermaid
+graph LR
+    subgraph "Development"
+        A["💻 Local Machine<br/>Python + FastAPI"] --> B["🏠 localhost:8000"]
+    end
+    
+    subgraph "Source Control"
+        C["📚 GitHub Repository"] --> D["🔄 Version Control"]
+    end
+    
+    subgraph "Static Hosting"
+        E["📄 GitHub Pages<br/>Landing Page"] --> F["🌐 nravi7.github.io"]
+    end
+    
+    subgraph "Cloud Deployment"
+        G["🚂 Railway<br/>Free Tier"] --> H["🌐 railway.app domain"]
+        I["☁️ Render<br/>Free Tier"] --> J["🌐 render.com domain"]
+        K["☁️ AWS App Runner<br/>Free Tier"] --> L["🌐 awsapprunner.com domain"]
+    end
+    
+    A --> C
+    C --> E
+    C --> G
+    C --> I
+    C --> K
+    
+    style A fill:#e8f5e8
+    style C fill:#e3f2fd
+    style E fill:#fff3e0
+    style G fill:#f1f8e9
+    style I fill:#fce4ec
+    style K fill:#e1f5fe
+```
+
+## 🔧 Technology Stack
+
+```mermaid
+graph TB
+    subgraph "Frontend"
+        A["HTML5"] --> B["CSS3"]
+        B --> C["JavaScript ES6+"]
+        C --> D["Font Awesome Icons"]
+    end
+    
+    subgraph "Backend"
+        E["FastAPI"] --> F["Uvicorn"]
+        F --> G["Pydantic"]
+        G --> H["Python 3.9+"]
+    end
+    
+    subgraph "AI Services"
+        I["OpenAI API"] --> J["GPT-4"]
+        K["Rule-Based Engine"] --> L["Pattern Matching"]
+    end
+    
+    subgraph "Deployment"
+        M["GitHub"] --> N["GitHub Pages"]
+        O["Railway"] --> P["Render"]
+        Q["AWS App Runner"] --> R["Docker"]
+    end
+    
+    style A fill:#e1f5fe
+    style E fill:#f3e5f5
+    style I fill:#fff3e0
+    style M fill:#e8f5e8
+```
+
+## 📊 Data Flow
+
+```mermaid
+sequenceDiagram
+    participant U as 👤 User
+    participant W as 🌐 Web Interface
+    participant F as ⚡ FastAPI
+    participant O as 🤖 OpenAI
+    participant R as 📊 Rule-Based
+    
+    U->>W: Enter transaction text
+    W->>F: POST /v1/score
+    F->>O: Analyze with AI
+    O-->>F: AI response
+    F->>R: Fallback analysis
+    R-->>F: Rule-based result
+    F-->>W: JSON response
+    W->>U: Display results
+```
 
 ## 🚀 Quick Start
 
