@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fraud Detection Service - Architecture</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .diagram-container {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Main Page</a>
+        
+        <h1>🏗️ Fraud Detection Service Architecture</h1>
+        
+        <div class="diagram-container">
+            <h2>System Architecture Overview</h2>
+            <div class="mermaid">
+graph TB
+    subgraph "Frontend Layer"
+        A["🌐 Web Interface<br/>HTML/CSS/JavaScript"] --> B["📝 User Input<br/>Transaction Text"]
+    end
+    
+    subgraph "API Gateway"
+        C["⚡ FastAPI Server<br/>Port 8000"] --> D["🔒 CORS Middleware"]
+        D --> E["🔑 Authentication<br/>JWT Tokens"]
+    end
+    
+    subgraph "Core Services"
+        F["🤖 OpenAI Provider<br/>GPT-4 Analysis"] --> G["🧠 AI Fraud Detection"]
+        H["📊 Rule-Based Provider<br/>Pattern Matching"] --> I["🔍 Heuristic Analysis"]
+    end
+    
+    subgraph "Data Processing"
+        J["⚙️ Transaction Parser"] --> K["📈 Risk Scoring<br/>0.0 - 1.0"]
+        K --> L["🏷️ Fraud Classification<br/>FRAUD/LEGIT"]
+    end
+    
+    subgraph "Response Layer"
+        M["📋 Result Formatter"] --> N["📄 JSON Response"]
+        N --> O["📊 Status Indicators<br/>Ready/Processing/Completed"]
+    end
+    
+    B --> C
+    C --> F
+    C --> H
+    G --> J
+    I --> J
+    L --> M
+    O --> A
+    
+    style A fill:#e1f5fe
+    style C fill:#f3e5f5
+    style F fill:#fff3e0
+    style H fill:#e8f5e8
+            </div>
+        </div>
+        
+        <div class="diagram-container">
+            <h2>Deployment Architecture</h2>
+            <div class="mermaid">
+graph LR
+    subgraph "Development"
+        A["💻 Local Machine<br/>Python + FastAPI"] --> B["🏠 localhost:8000"]
+    end
+    
+    subgraph "Source Control"
+        C["📚 GitHub Repository<br/>nravi7/Fraud-Detection-Service"] --> D["🔄 Version Control"]
+    end
+    
+    subgraph "Static Hosting"
+        E["📄 GitHub Pages<br/>Landing Page"] --> F["🌐 nravi7.github.io"]
+    end
+    
+    subgraph "Cloud Deployment"
+        G["🚂 Railway<br/>Free Tier"] --> H["🌐 railway.app domain"]
+        I["☁️ Render<br/>Free Tier"] --> J["🌐 render.com domain"]
+        K["☁️ AWS App Runner<br/>Free Tier"] --> L["🌐 awsapprunner.com domain"]
+    end
+    
+    A --> C
+    C --> E
+    C --> G
+    C --> I
+    C --> K
+    
+    style A fill:#e8f5e8
+    style C fill:#e3f2fd
+    style E fill:#fff3e0
+    style G fill:#f1f8e9
+    style I fill:#fce4ec
+    style K fill:#e1f5fe
+            </div>
+        </div>
+        
+        <div class="diagram-container">
+            <h2>Data Flow Sequence</h2>
+            <div class="mermaid">
+sequenceDiagram
+    participant U as 👤 User
+    participant W as 🌐 Web Interface
+    participant F as ⚡ FastAPI
+    participant O as 🤖 OpenAI
+    participant R as 📊 Rule-Based
+    participant D as 💾 Database
+    
+    U->>W: Enter transaction text
+    W->>F: POST /v1/score
+    F->>O: Analyze with AI
+    O-->>F: AI response
+    F->>R: Fallback analysis
+    R-->>F: Rule-based result
+    F->>D: Log transaction
+    F-->>W: JSON response
+    W->>U: Display results
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px; color: #666;">
+            <p>© 2024 Ravi N. All rights reserved.</p>
+            <p>Built with ❤️ using FastAPI, OpenAI, and modern web technologies</p>
+        </div>
+    </div>
+    
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</body>
+</html>
